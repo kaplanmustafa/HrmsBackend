@@ -4,6 +4,7 @@ import com.mustafakaplan.hrms.business.abstracts.EmployeeService;
 import com.mustafakaplan.hrms.core.utilities.results.ErrorResult;
 import com.mustafakaplan.hrms.core.utilities.results.Result;
 import com.mustafakaplan.hrms.core.utilities.results.SuccessResult;
+import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployeeDao;
 import com.mustafakaplan.hrms.entities.concretes.Employee;
 import com.mustafakaplan.hrms.entities.concretes.vm.EmployeeVM;
@@ -15,10 +16,12 @@ import org.springframework.stereotype.Service;
 public class EmployeeManager implements EmployeeService {
 
     private final EmployeeDao employeeDao;
+    private final MailService mailService;
 
     @Autowired
-    public EmployeeManager(EmployeeDao employeeDao) {
+    public EmployeeManager(EmployeeDao employeeDao, MailService mailService) {
         this.employeeDao = employeeDao;
+        this.mailService = mailService;
     }
 
     @Override
@@ -69,7 +72,9 @@ public class EmployeeManager implements EmployeeService {
         employeeRegister.setEmail(employee.getEmail());
         employeeRegister.setPassword(employee.getPassword());
         employeeRegister.setVerified(false);
+
         employeeDao.save(employeeRegister);
+        mailService.sendMailToEmployee(employeeRegister, "Kaydınız başarılı bir şekilde gerçekleşmiştir");
 
         return new SuccessResult("Kayıt Başarılı");
     }
