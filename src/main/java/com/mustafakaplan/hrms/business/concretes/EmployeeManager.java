@@ -71,7 +71,7 @@ public class EmployeeManager implements EmployeeService {
         employeeRegister.setBirthYear(employee.getBirthYear());
         employeeRegister.setEmail(employee.getEmail());
         employeeRegister.setPassword(employee.getPassword());
-        employeeRegister.setVerified(false);
+        employeeRegister.setVerifiedEmail(false);
 
         employeeDao.save(employeeRegister);
         mailService.sendMailToEmployee(employeeRegister, "Kaydınız başarılı bir şekilde gerçekleşmiştir");

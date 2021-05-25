@@ -8,23 +8,23 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Employee {
+public class Employer {
 
     @Id
     @GeneratedValue
     private int id;
 
-    private String name;
+    private String companyName;
 
-    private String surname;
-
-    private String identityNumber;
-
-    private int birthYear;
+    private String website;
 
     private String email;
+
+    private String phone;
 
     private String password;
 
     private boolean isVerifiedEmail;
+
+    private boolean isVerifiedAccount;
 }
