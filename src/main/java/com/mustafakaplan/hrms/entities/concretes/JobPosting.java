@@ -1,16 +1,20 @@
 package com.mustafakaplan.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @Entity
-public class Job {
+@AllArgsConstructor
+@NoArgsConstructor
+public class JobPosting {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
@@ -28,7 +32,11 @@ public class Job {
 
     private int numberOfEmployees;
 
-    //company or employer
+    @ManyToOne
+    private JobPosition jobPosition;
+
+    @ManyToOne
+    private Employer employer;
 
     //city - country
 

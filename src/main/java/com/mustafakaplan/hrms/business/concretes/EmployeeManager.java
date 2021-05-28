@@ -1,9 +1,7 @@
 package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.EmployeeService;
-import com.mustafakaplan.hrms.core.utilities.results.ErrorResult;
-import com.mustafakaplan.hrms.core.utilities.results.Result;
-import com.mustafakaplan.hrms.core.utilities.results.SuccessResult;
+import com.mustafakaplan.hrms.core.utilities.results.*;
 import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployeeDao;
 import com.mustafakaplan.hrms.entities.concretes.Employee;
@@ -11,6 +9,8 @@ import com.mustafakaplan.hrms.entities.concretes.vm.EmployeeVM;
 import com.mustafakaplan.hrms.mernisReference.EROKPSPublicSoap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EmployeeManager implements EmployeeService {
@@ -77,5 +77,10 @@ public class EmployeeManager implements EmployeeService {
         mailService.sendMailToEmployee(employeeRegister, "Kaydınız başarılı bir şekilde gerçekleşmiştir");
 
         return new SuccessResult("Kayıt Başarılı");
+    }
+
+    @Override
+    public DataResult<List<Employee>> getAll() {
+        return new SuccessDataResult<>(employeeDao.findAll(), "Data Listelendi");
     }
 }
