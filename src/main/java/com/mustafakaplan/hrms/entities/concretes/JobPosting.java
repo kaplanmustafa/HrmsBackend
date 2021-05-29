@@ -17,8 +17,6 @@ public class JobPosting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String title;
-
     @Column(length = 1000)
     private String description;
 
@@ -42,4 +40,6 @@ public class JobPosting {
 
     @ManyToOne
     private City city;
+
+    private boolean isActive;
 }

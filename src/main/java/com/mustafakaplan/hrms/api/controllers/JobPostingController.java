@@ -1,11 +1,13 @@
 package com.mustafakaplan.hrms.api.controllers;
 
 import com.mustafakaplan.hrms.business.abstracts.JobPostingService;
+import com.mustafakaplan.hrms.core.utilities.results.DataResult;
+import com.mustafakaplan.hrms.core.utilities.results.Result;
 import com.mustafakaplan.hrms.entities.concretes.JobPosting;
+import com.mustafakaplan.hrms.entities.concretes.vm.JobPostingSubmitVM;
+import com.mustafakaplan.hrms.entities.concretes.vm.JobPostingVM;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +23,17 @@ public class JobPostingController {
     }
 
     @GetMapping("/getAll")
-    public List<JobPosting> getAll() {
+    public DataResult<List<JobPosting>> getAll() {
         return jobPostingService.getAll();
+    }
+
+    @PostMapping("/add")
+    public Result add(@RequestBody JobPostingSubmitVM jobPosting) {
+        return jobPostingService.add(jobPosting);
+    }
+
+    @GetMapping("/getAllActivePosting")
+    public DataResult<List<JobPostingVM>> getAllActivePosting() {
+        return jobPostingService.getAllActivePosting();
     }
 }

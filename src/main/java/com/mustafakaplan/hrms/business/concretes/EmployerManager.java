@@ -4,7 +4,6 @@ import com.mustafakaplan.hrms.business.abstracts.EmployerService;
 import com.mustafakaplan.hrms.core.utilities.results.*;
 import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployerDao;
-import com.mustafakaplan.hrms.entities.concretes.Employee;
 import com.mustafakaplan.hrms.entities.concretes.Employer;
 import com.mustafakaplan.hrms.entities.concretes.vm.EmployerVM;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class EmployerManager implements EmployerService {
             return new ErrorResult("Parolalar Eşleşmiyor!");
         }
 
-        Employee emailInDb = employerDao.findByEmail(employer.getEmail());
+        Employer emailInDb = employerDao.findByEmail(employer.getEmail());
 
         if (emailInDb != null) {
             return new ErrorResult("Bu Mail Adresi Başka Bir Şirket Hesabına Ait!");
@@ -67,5 +66,16 @@ public class EmployerManager implements EmployerService {
     @Override
     public DataResult<List<Employer>> getAll() {
         return new SuccessDataResult<>(employerDao.findAll(), "Data Listelendi");
+    }
+
+    @Override
+    public DataResult<Employer> findByEmail(String email) {
+        Employer employerInDB = employerDao.findByEmail(email);
+
+        if (employerInDB == null) {
+            return new ErrorDataResult<>("Data Bulunamadı!");
+        }
+
+        return new SuccessDataResult<>(employerInDB, "Data Bulundu");
     }
 }

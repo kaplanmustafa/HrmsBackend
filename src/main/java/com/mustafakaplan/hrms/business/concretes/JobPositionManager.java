@@ -36,4 +36,15 @@ public class JobPositionManager implements JobPositionService {
     public DataResult<List<JobPosition>> getAll() {
         return new SuccessDataResult<>(jobPositionDao.findAll(), "Data Listelendi");
     }
+
+    @Override
+    public DataResult<JobPosition> getById(int id) {
+        JobPosition jobPositionInDB = jobPositionDao.getOne(id);
+
+        if (jobPositionInDB == null) {
+            return new ErrorDataResult<>("Data Bulunamadı!");
+        }
+
+        return new SuccessDataResult<>(jobPositionInDB, "Data Bulundu");
+    }
 }
