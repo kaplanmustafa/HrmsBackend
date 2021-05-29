@@ -72,4 +72,45 @@ public class JobPostingManager implements JobPostingService {
 
         return new SuccessDataResult<>(jobPostingVMList, "Data Listelendi");
     }
+
+    @Override
+    public DataResult<List<JobPostingVM>> getAllActivePostingByDateDesc() {
+        List<JobPostingVM> jobPostingVMList = new ArrayList<>();
+
+        List<JobPosting> jobPostings = jobPostingDao.findAllByIsActiveTrueOrderByStartDateDesc();
+        for (JobPosting item : jobPostings) {
+            jobPostingVMList.add(new JobPostingVM(item));
+        }
+
+        return new SuccessDataResult<>(jobPostingVMList, "Data Listelendi");
+    }
+
+    @Override
+    public DataResult<List<JobPostingVM>> getAllActivePostingByDateAsc() {
+        List<JobPostingVM> jobPostingVMList = new ArrayList<>();
+
+        List<JobPosting> jobPostings = jobPostingDao.findAllByIsActiveTrueOrderByStartDateAsc();
+        for (JobPosting item : jobPostings) {
+            jobPostingVMList.add(new JobPostingVM(item));
+        }
+
+        return new SuccessDataResult<>(jobPostingVMList, "Data Listelendi");
+    }
+
+    @Override
+    public DataResult<List<JobPostingVM>> getAllActivePostingByCompany(String companyWebsite) {
+        List<JobPostingVM> jobPostingVMList = new ArrayList<>();
+
+        List<JobPosting> jobPostings = jobPostingDao.findAllByEmployerWebsiteAndIsActiveTrue(companyWebsite);
+
+        if(jobPostings.isEmpty()) {
+            return new ErrorDataResult<>("Data Bulunamadı!");
+        }
+
+        for (JobPosting item : jobPostings) {
+            jobPostingVMList.add(new JobPostingVM(item));
+        }
+
+        return new SuccessDataResult<>(jobPostingVMList, "Data Listelendi");
+    }
 }

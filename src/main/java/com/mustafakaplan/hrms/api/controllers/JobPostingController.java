@@ -36,4 +36,19 @@ public class JobPostingController {
     public DataResult<List<JobPostingVM>> getAllActivePosting() {
         return jobPostingService.getAllActivePosting();
     }
+
+    @GetMapping("/getAllActivePostingByDateDesc")
+    public DataResult<List<JobPostingVM>> getAllActivePostingByDateDesc() {
+        return jobPostingService.getAllActivePostingByDateDesc();
+    }
+
+    @GetMapping("/getAllActivePostingByDateAsc")
+    public DataResult<List<JobPostingVM>> getAllActivePostingByDateAsc() {
+        return jobPostingService.getAllActivePostingByDateAsc();
+    }
+
+    @GetMapping("/getAllActivePostingByCompany")
+    public DataResult<List<JobPostingVM>> getAllActivePostingByCompany(@RequestParam String companyWebsite) {
+        return jobPostingService.getAllActivePostingByCompany(companyWebsite);
+    }
 }

@@ -8,4 +8,10 @@ import java.util.List;
 public interface JobPostingDao extends JpaRepository<JobPosting, Integer> {
 
     List<JobPosting> findAllByIsActiveTrue();
+
+    List<JobPosting> findAllByIsActiveTrueOrderByStartDateDesc();
+
+    List<JobPosting> findAllByIsActiveTrueOrderByStartDateAsc();
+
+    List<JobPosting> findAllByEmployerWebsiteAndIsActiveTrue(String companyWebsite);
 }

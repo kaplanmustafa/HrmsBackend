@@ -15,4 +15,10 @@ public interface JobPostingService {
     Result add(JobPostingSubmitVM jobPosting);
 
     DataResult<List<JobPostingVM>> getAllActivePosting();
+
+    DataResult<List<JobPostingVM>> getAllActivePostingByDateDesc();
+
+    DataResult<List<JobPostingVM>> getAllActivePostingByDateAsc();
+
+    DataResult<List<JobPostingVM>> getAllActivePostingByCompany(String companyWebsite);
 }
