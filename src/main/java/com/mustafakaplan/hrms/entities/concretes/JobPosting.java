@@ -22,7 +22,9 @@ public class JobPosting {
     @Column(length = 1000)
     private String description;
 
-    private double salary;
+    private double minSalary;
+
+    private double maxSalary;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
@@ -38,17 +40,6 @@ public class JobPosting {
     @ManyToOne
     private Employer employer;
 
-    //city - country
-
-    //experience
-
-    //militaryStatus
-
-    //educationLevel
-
-    //department
-
-    //mannerOfWork
-
-    //social - benefits
+    @ManyToOne
+    private City city;
 }
