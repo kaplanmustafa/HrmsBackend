@@ -1,10 +1,13 @@
 package com.mustafakaplan.hrms.entities.dtos;
 
 import com.mustafakaplan.hrms.core.utilities.DateUtil;
-import com.mustafakaplan.hrms.entities.concretes.JobPosting;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Data
+@NoArgsConstructor
 public class JobPostingDto {
 
     private String companyName;
@@ -17,11 +20,11 @@ public class JobPostingDto {
 
     private String endDate;
 
-    public JobPostingDto(JobPosting jobPosting) {
-        this.companyName = jobPosting.getEmployer().getCompanyName();
-        this.positionName = jobPosting.getJobPosition().getJobTitle();
-        this.numberOfEmployees = jobPosting.getNumberOfEmployees();
-        this.startDate = DateUtil.convertDateToTrStringFormatFromTimestamp(jobPosting.getStartDate());
-        this.endDate = DateUtil.convertDateToTrStringFormatFromTimestamp(jobPosting.getEndDate());
+    public JobPostingDto(String companyName, String positionName, int numberOfEmployees, Date startDate, Date endDate) {
+        this.companyName = companyName;
+        this.positionName = positionName;
+        this.numberOfEmployees = numberOfEmployees;
+        this.startDate = DateUtil.convertDateToTrStringFormatFromTimestamp(startDate);
+        this.endDate = DateUtil.convertDateToTrStringFormatFromTimestamp(endDate);
     }
 }

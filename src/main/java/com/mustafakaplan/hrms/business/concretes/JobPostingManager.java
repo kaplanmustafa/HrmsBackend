@@ -7,12 +7,11 @@ import com.mustafakaplan.hrms.business.abstracts.JobPostingService;
 import com.mustafakaplan.hrms.core.utilities.results.*;
 import com.mustafakaplan.hrms.dataAccess.abstracts.JobPostingDao;
 import com.mustafakaplan.hrms.entities.concretes.JobPosting;
-import com.mustafakaplan.hrms.entities.dtos.JobPostingSubmitDto;
 import com.mustafakaplan.hrms.entities.dtos.JobPostingDto;
+import com.mustafakaplan.hrms.entities.dtos.JobPostingSubmitDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,54 +62,21 @@ public class JobPostingManager implements JobPostingService {
 
     @Override
     public DataResult<List<JobPostingDto>> getAllActivePosting() {
-        List<JobPostingDto> jobPostingDtoList = new ArrayList<>();
-
-        List<JobPosting> jobPostings = jobPostingDao.findAllByIsActiveTrue();
-        for (JobPosting item : jobPostings) {
-            jobPostingDtoList.add(new JobPostingDto(item));
-        }
-
-        return new SuccessDataResult<>(jobPostingDtoList, "Data Listelendi");
+        return new SuccessDataResult<>(jobPostingDao.findAllByIsActiveTrue(), "Data Listelendi");
     }
 
     @Override
     public DataResult<List<JobPostingDto>> getAllActivePostingByDateDesc() {
-        List<JobPostingDto> jobPostingDtoList = new ArrayList<>();
-
-        List<JobPosting> jobPostings = jobPostingDao.findAllByIsActiveTrueOrderByStartDateDesc();
-        for (JobPosting item : jobPostings) {
-            jobPostingDtoList.add(new JobPostingDto(item));
-        }
-
-        return new SuccessDataResult<>(jobPostingDtoList, "Data Listelendi");
+        return new SuccessDataResult<>(jobPostingDao.findAllByIsActiveTrueOrderByStartDateDesc(), "Data Listelendi");
     }
 
     @Override
     public DataResult<List<JobPostingDto>> getAllActivePostingByDateAsc() {
-        List<JobPostingDto> jobPostingDtoList = new ArrayList<>();
-
-        List<JobPosting> jobPostings = jobPostingDao.findAllByIsActiveTrueOrderByStartDateAsc();
-        for (JobPosting item : jobPostings) {
-            jobPostingDtoList.add(new JobPostingDto(item));
-        }
-
-        return new SuccessDataResult<>(jobPostingDtoList, "Data Listelendi");
+        return new SuccessDataResult<>(jobPostingDao.findAllByIsActiveTrueOrderByStartDateAsc(), "Data Listelendi");
     }
 
     @Override
     public DataResult<List<JobPostingDto>> getAllActivePostingByCompany(String companyWebsite) {
-        List<JobPostingDto> jobPostingDtoList = new ArrayList<>();
-
-        List<JobPosting> jobPostings = jobPostingDao.findAllByEmployerWebsiteAndIsActiveTrue(companyWebsite);
-
-        if(jobPostings.isEmpty()) {
-            return new ErrorDataResult<>("Data Bulunamadı!");
-        }
-
-        for (JobPosting item : jobPostings) {
-            jobPostingDtoList.add(new JobPostingDto(item));
-        }
-
-        return new SuccessDataResult<>(jobPostingDtoList, "Data Listelendi");
+        return new SuccessDataResult<>(jobPostingDao.getActivePostingsWithDetails(companyWebsite), "Data Listelendi");
     }
 }
