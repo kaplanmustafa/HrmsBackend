@@ -27,11 +27,6 @@ public class EmployeeManager implements EmployeeService {
     @Override
     public Result add(EmployeeDto employee) {
 
-        if (employee.getName() == null || employee.getSurname() == null || employee.getIdentityNumber() == null || employee.getBirthYear() == 0
-                || employee.getEmail() == null || employee.getPassword() == null || employee.getPasswordRepeat() == null) {
-            return new ErrorResult("Lütfen Tüm Alanları Doldurunuz!");
-        }
-
         if (!employee.getPassword().equals(employee.getPasswordRepeat())) {
             return new ErrorResult("Parolalar Eşleşmiyor!");
         }

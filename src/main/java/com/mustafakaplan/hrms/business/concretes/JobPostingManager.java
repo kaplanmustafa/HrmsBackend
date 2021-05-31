@@ -4,7 +4,10 @@ import com.mustafakaplan.hrms.business.abstracts.CityService;
 import com.mustafakaplan.hrms.business.abstracts.EmployerService;
 import com.mustafakaplan.hrms.business.abstracts.JobPositionService;
 import com.mustafakaplan.hrms.business.abstracts.JobPostingService;
-import com.mustafakaplan.hrms.core.utilities.results.*;
+import com.mustafakaplan.hrms.core.utilities.results.DataResult;
+import com.mustafakaplan.hrms.core.utilities.results.Result;
+import com.mustafakaplan.hrms.core.utilities.results.SuccessDataResult;
+import com.mustafakaplan.hrms.core.utilities.results.SuccessResult;
 import com.mustafakaplan.hrms.dataAccess.abstracts.JobPostingDao;
 import com.mustafakaplan.hrms.entities.concretes.JobPosting;
 import com.mustafakaplan.hrms.entities.dtos.JobPostingDto;
@@ -38,11 +41,6 @@ public class JobPostingManager implements JobPostingService {
 
     @Override
     public Result add(JobPostingSubmitDto submitVM) {
-
-        if (submitVM.getJobPositionId() == 0 || submitVM.getDescription() == null || submitVM.getCityId() == 0 || submitVM.getNumberOfEmployees() < 1) {
-            return new ErrorResult("Lütfen Zorunlu Alanları Doldurunuz!");
-        }
-
         JobPosting jobPosting = new JobPosting();
 
         jobPosting.setDescription(submitVM.getDescription());

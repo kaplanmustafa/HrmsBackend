@@ -26,11 +26,6 @@ public class EmployerManager implements EmployerService {
     @Override
     public Result add(EmployerDto employer) {
 
-        if (employer.getCompanyName() == null || employer.getWebsite() == null || employer.getEmail() == null || employer.getPhone() == null
-                || employer.getPassword() == null || employer.getPasswordRepeat() == null) {
-            return new ErrorResult("Lütfen Tüm Alanları Doldurunuz!");
-        }
-
         if (!employer.getPassword().equals(employer.getPasswordRepeat())) {
             return new ErrorResult("Parolalar Eşleşmiyor!");
         }
