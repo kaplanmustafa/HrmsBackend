@@ -5,7 +5,7 @@ import com.mustafakaplan.hrms.core.utilities.results.*;
 import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployerDao;
 import com.mustafakaplan.hrms.entities.concretes.Employer;
-import com.mustafakaplan.hrms.entities.concretes.vm.EmployerVM;
+import com.mustafakaplan.hrms.entities.dtos.EmployerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class EmployerManager implements EmployerService {
     }
 
     @Override
-    public Result add(EmployerVM employer) {
+    public Result add(EmployerDto employer) {
 
         if (employer.getCompanyName() == null || employer.getWebsite() == null || employer.getEmail() == null || employer.getPhone() == null
                 || employer.getPassword() == null || employer.getPasswordRepeat() == null) {

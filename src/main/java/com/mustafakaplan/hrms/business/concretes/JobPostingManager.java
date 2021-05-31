@@ -7,8 +7,8 @@ import com.mustafakaplan.hrms.business.abstracts.JobPostingService;
 import com.mustafakaplan.hrms.core.utilities.results.*;
 import com.mustafakaplan.hrms.dataAccess.abstracts.JobPostingDao;
 import com.mustafakaplan.hrms.entities.concretes.JobPosting;
-import com.mustafakaplan.hrms.entities.concretes.vm.JobPostingSubmitVM;
-import com.mustafakaplan.hrms.entities.concretes.vm.JobPostingVM;
+import com.mustafakaplan.hrms.entities.dtos.JobPostingSubmitDto;
+import com.mustafakaplan.hrms.entities.dtos.JobPostingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +38,7 @@ public class JobPostingManager implements JobPostingService {
     }
 
     @Override
-    public Result add(JobPostingSubmitVM submitVM) {
+    public Result add(JobPostingSubmitDto submitVM) {
 
         if (submitVM.getJobPositionId() == 0 || submitVM.getDescription() == null || submitVM.getCityId() == 0 || submitVM.getNumberOfEmployees() < 1) {
             return new ErrorResult("Lütfen Zorunlu Alanları Doldurunuz!");
@@ -62,44 +62,44 @@ public class JobPostingManager implements JobPostingService {
     }
 
     @Override
-    public DataResult<List<JobPostingVM>> getAllActivePosting() {
-        List<JobPostingVM> jobPostingVMList = new ArrayList<>();
+    public DataResult<List<JobPostingDto>> getAllActivePosting() {
+        List<JobPostingDto> jobPostingDtoList = new ArrayList<>();
 
         List<JobPosting> jobPostings = jobPostingDao.findAllByIsActiveTrue();
         for (JobPosting item : jobPostings) {
-            jobPostingVMList.add(new JobPostingVM(item));
+            jobPostingDtoList.add(new JobPostingDto(item));
         }
 
-        return new SuccessDataResult<>(jobPostingVMList, "Data Listelendi");
+        return new SuccessDataResult<>(jobPostingDtoList, "Data Listelendi");
     }
 
     @Override
-    public DataResult<List<JobPostingVM>> getAllActivePostingByDateDesc() {
-        List<JobPostingVM> jobPostingVMList = new ArrayList<>();
+    public DataResult<List<JobPostingDto>> getAllActivePostingByDateDesc() {
+        List<JobPostingDto> jobPostingDtoList = new ArrayList<>();
 
         List<JobPosting> jobPostings = jobPostingDao.findAllByIsActiveTrueOrderByStartDateDesc();
         for (JobPosting item : jobPostings) {
-            jobPostingVMList.add(new JobPostingVM(item));
+            jobPostingDtoList.add(new JobPostingDto(item));
         }
 
-        return new SuccessDataResult<>(jobPostingVMList, "Data Listelendi");
+        return new SuccessDataResult<>(jobPostingDtoList, "Data Listelendi");
     }
 
     @Override
-    public DataResult<List<JobPostingVM>> getAllActivePostingByDateAsc() {
-        List<JobPostingVM> jobPostingVMList = new ArrayList<>();
+    public DataResult<List<JobPostingDto>> getAllActivePostingByDateAsc() {
+        List<JobPostingDto> jobPostingDtoList = new ArrayList<>();
 
         List<JobPosting> jobPostings = jobPostingDao.findAllByIsActiveTrueOrderByStartDateAsc();
         for (JobPosting item : jobPostings) {
-            jobPostingVMList.add(new JobPostingVM(item));
+            jobPostingDtoList.add(new JobPostingDto(item));
         }
 
-        return new SuccessDataResult<>(jobPostingVMList, "Data Listelendi");
+        return new SuccessDataResult<>(jobPostingDtoList, "Data Listelendi");
     }
 
     @Override
-    public DataResult<List<JobPostingVM>> getAllActivePostingByCompany(String companyWebsite) {
-        List<JobPostingVM> jobPostingVMList = new ArrayList<>();
+    public DataResult<List<JobPostingDto>> getAllActivePostingByCompany(String companyWebsite) {
+        List<JobPostingDto> jobPostingDtoList = new ArrayList<>();
 
         List<JobPosting> jobPostings = jobPostingDao.findAllByEmployerWebsiteAndIsActiveTrue(companyWebsite);
 
@@ -108,9 +108,9 @@ public class JobPostingManager implements JobPostingService {
         }
 
         for (JobPosting item : jobPostings) {
-            jobPostingVMList.add(new JobPostingVM(item));
+            jobPostingDtoList.add(new JobPostingDto(item));
         }
 
-        return new SuccessDataResult<>(jobPostingVMList, "Data Listelendi");
+        return new SuccessDataResult<>(jobPostingDtoList, "Data Listelendi");
     }
 }

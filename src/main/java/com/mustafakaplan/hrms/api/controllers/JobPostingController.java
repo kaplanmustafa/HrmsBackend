@@ -4,8 +4,8 @@ import com.mustafakaplan.hrms.business.abstracts.JobPostingService;
 import com.mustafakaplan.hrms.core.utilities.results.DataResult;
 import com.mustafakaplan.hrms.core.utilities.results.Result;
 import com.mustafakaplan.hrms.entities.concretes.JobPosting;
-import com.mustafakaplan.hrms.entities.concretes.vm.JobPostingSubmitVM;
-import com.mustafakaplan.hrms.entities.concretes.vm.JobPostingVM;
+import com.mustafakaplan.hrms.entities.dtos.JobPostingSubmitDto;
+import com.mustafakaplan.hrms.entities.dtos.JobPostingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,27 +28,27 @@ public class JobPostingController {
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody JobPostingSubmitVM jobPosting) {
+    public Result add(@RequestBody JobPostingSubmitDto jobPosting) {
         return jobPostingService.add(jobPosting);
     }
 
     @GetMapping("/getAllActivePosting")
-    public DataResult<List<JobPostingVM>> getAllActivePosting() {
+    public DataResult<List<JobPostingDto>> getAllActivePosting() {
         return jobPostingService.getAllActivePosting();
     }
 
     @GetMapping("/getAllActivePostingByDateDesc")
-    public DataResult<List<JobPostingVM>> getAllActivePostingByDateDesc() {
+    public DataResult<List<JobPostingDto>> getAllActivePostingByDateDesc() {
         return jobPostingService.getAllActivePostingByDateDesc();
     }
 
     @GetMapping("/getAllActivePostingByDateAsc")
-    public DataResult<List<JobPostingVM>> getAllActivePostingByDateAsc() {
+    public DataResult<List<JobPostingDto>> getAllActivePostingByDateAsc() {
         return jobPostingService.getAllActivePostingByDateAsc();
     }
 
     @GetMapping("/getAllActivePostingByCompany")
-    public DataResult<List<JobPostingVM>> getAllActivePostingByCompany(@RequestParam String companyWebsite) {
+    public DataResult<List<JobPostingDto>> getAllActivePostingByCompany(@RequestParam String companyWebsite) {
         return jobPostingService.getAllActivePostingByCompany(companyWebsite);
     }
 }

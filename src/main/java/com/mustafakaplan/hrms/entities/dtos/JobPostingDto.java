@@ -1,11 +1,11 @@
-package com.mustafakaplan.hrms.entities.concretes.vm;
+package com.mustafakaplan.hrms.entities.dtos;
 
 import com.mustafakaplan.hrms.core.utilities.DateUtil;
 import com.mustafakaplan.hrms.entities.concretes.JobPosting;
 import lombok.Data;
 
 @Data
-public class JobPostingVM {
+public class JobPostingDto {
 
     private String companyName;
 
@@ -17,7 +17,7 @@ public class JobPostingVM {
 
     private String endDate;
 
-    public JobPostingVM(JobPosting jobPosting) {
+    public JobPostingDto(JobPosting jobPosting) {
         this.companyName = jobPosting.getEmployer().getCompanyName();
         this.positionName = jobPosting.getJobPosition().getJobTitle();
         this.numberOfEmployees = jobPosting.getNumberOfEmployees();

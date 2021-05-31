@@ -1,9 +1,9 @@
-package com.mustafakaplan.hrms.entities.concretes.vm;
+package com.mustafakaplan.hrms.entities.dtos;
 
 import lombok.Data;
 
 @Data
-public class EmployerVM {
+public class EmployerDto {
 
     private String companyName;
 

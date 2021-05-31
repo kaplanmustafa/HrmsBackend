@@ -5,7 +5,7 @@ import com.mustafakaplan.hrms.core.utilities.results.*;
 import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployeeDao;
 import com.mustafakaplan.hrms.entities.concretes.Employee;
-import com.mustafakaplan.hrms.entities.concretes.vm.EmployeeVM;
+import com.mustafakaplan.hrms.entities.dtos.EmployeeDto;
 import com.mustafakaplan.hrms.mernisReference.EROKPSPublicSoap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class EmployeeManager implements EmployeeService {
     }
 
     @Override
-    public Result add(EmployeeVM employee) {
+    public Result add(EmployeeDto employee) {
 
         if (employee.getName() == null || employee.getSurname() == null || employee.getIdentityNumber() == null || employee.getBirthYear() == 0
                 || employee.getEmail() == null || employee.getPassword() == null || employee.getPasswordRepeat() == null) {
