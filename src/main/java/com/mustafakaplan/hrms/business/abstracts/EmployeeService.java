@@ -12,4 +12,6 @@ public interface EmployeeService {
     Result add(EmployeeDto employee);
 
     DataResult<List<Employee>> getAll();
+
+    DataResult<Employee> getEmployeeByIdentityNumber(String identityNumber);
 }

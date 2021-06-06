@@ -78,4 +78,9 @@ public class EmployeeManager implements EmployeeService {
     public DataResult<List<Employee>> getAll() {
         return new SuccessDataResult<>(employeeDao.findAll(), "Data Listelendi");
     }
+
+    @Override
+    public DataResult<Employee> getEmployeeByIdentityNumber(String identityNumber) {
+        return new SuccessDataResult<>(employeeDao.findByIdentityNumber(identityNumber), "Data Listelendi");
+    }
 }

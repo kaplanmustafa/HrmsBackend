@@ -2,9 +2,7 @@ package com.mustafakaplan.hrms.entities.concretes;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -27,4 +25,7 @@ public class Employee {
     private String password;
 
     private boolean isVerifiedEmail;
+
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    private Cv cv;
 }
