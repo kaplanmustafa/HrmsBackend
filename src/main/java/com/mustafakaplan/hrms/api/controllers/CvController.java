@@ -1,8 +1,10 @@
 package com.mustafakaplan.hrms.api.controllers;
 
 import com.mustafakaplan.hrms.business.abstracts.CvService;
+import com.mustafakaplan.hrms.core.utilities.results.DataResult;
 import com.mustafakaplan.hrms.core.utilities.results.ErrorDataResult;
 import com.mustafakaplan.hrms.core.utilities.results.Result;
+import com.mustafakaplan.hrms.entities.concretes.Cv;
 import com.mustafakaplan.hrms.entities.dtos.CvSubmitDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,11 @@ public class CvController {
     @Autowired
     public CvController(CvService cvService) {
         this.cvService = cvService;
+    }
+
+    @GetMapping("/getCvOfUser/{identityNumber}")
+    public DataResult<Cv> getCvOfUser(@PathVariable String identityNumber) {
+        return cvService.getCvOfUser(identityNumber);
     }
 
     @PostMapping("/add/{identityNumber}")

@@ -2,7 +2,9 @@ package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.*;
 import com.mustafakaplan.hrms.core.utilities.FileUtil;
+import com.mustafakaplan.hrms.core.utilities.results.DataResult;
 import com.mustafakaplan.hrms.core.utilities.results.Result;
+import com.mustafakaplan.hrms.core.utilities.results.SuccessDataResult;
 import com.mustafakaplan.hrms.core.utilities.results.SuccessResult;
 import com.mustafakaplan.hrms.core.utilities.services.abstracts.ImageService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.CvDao;
@@ -71,5 +73,11 @@ public class CvManager implements CvService {
         }
 
         return new SuccessResult("Kayıt Başarılı");
+    }
+
+    @Override
+    public DataResult<Cv> getCvOfUser(String identityNumber) {
+        Employee employeeInDB = employeeService.getEmployeeByIdentityNumber(identityNumber).getData();
+        return new SuccessDataResult<>(cvDao.findByEmployee(employeeInDB), "Data Bulundu");
     }
 }

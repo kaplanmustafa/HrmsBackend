@@ -1,11 +1,13 @@
 package com.mustafakaplan.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cv"})
 public class Employee {
 
     @Id
