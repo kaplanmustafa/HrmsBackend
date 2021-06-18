@@ -6,7 +6,7 @@ import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployeeDao;
 import com.mustafakaplan.hrms.entities.concretes.Employee;
 import com.mustafakaplan.hrms.entities.dtos.EmployeeDto;
-import com.mustafakaplan.hrms.mernisReference.EROKPSPublicSoap;
+import com.mustafakaplan.hrms.mernisReference.PIPKPSPublicSoap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +47,7 @@ public class EmployeeManager implements EmployeeService {
             return new ErrorResult(errorMessage);
         }
 
-        EROKPSPublicSoap client = new EROKPSPublicSoap();
+        PIPKPSPublicSoap client = new PIPKPSPublicSoap();
         boolean result = false;
         try {
             result = client.TCKimlikNoDogrula(Long.parseLong(employee.getIdentityNumber()), employee.getName(), employee.getSurname(), employee.getBirthYear());
