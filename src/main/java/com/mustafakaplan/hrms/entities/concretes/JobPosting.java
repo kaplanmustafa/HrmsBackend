@@ -41,5 +41,12 @@ public class JobPosting {
     @ManyToOne
     private City city;
 
+    @ManyToOne
+    private JobType jobType;
+
+    private boolean isRemote;
+
     private boolean isActive;
+
+    private boolean isApproved;
 }

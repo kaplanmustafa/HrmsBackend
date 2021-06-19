@@ -9,6 +9,8 @@ import com.mustafakaplan.hrms.entities.concretes.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CityManager implements CityService {
 
@@ -28,5 +30,10 @@ public class CityManager implements CityService {
         }
 
         return new SuccessDataResult<>(cityInDB, "Data Bulundu");
+    }
+
+    @Override
+    public DataResult<List<City>> getAll() {
+        return new SuccessDataResult<>(cityDao.findAll(), "Data Listelendi");
     }
 }

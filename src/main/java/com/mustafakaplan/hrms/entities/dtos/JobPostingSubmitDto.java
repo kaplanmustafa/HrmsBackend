@@ -31,4 +31,10 @@ public class JobPostingSubmitDto {
 
     @NotNull
     private int cityId;
+
+    @NotNull
+    private int jobTypeId;
+
+    @NotNull
+    private boolean isRemote;
 }

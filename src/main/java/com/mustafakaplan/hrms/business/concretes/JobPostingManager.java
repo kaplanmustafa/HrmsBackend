@@ -1,9 +1,6 @@
 package com.mustafakaplan.hrms.business.concretes;
 
-import com.mustafakaplan.hrms.business.abstracts.CityService;
-import com.mustafakaplan.hrms.business.abstracts.EmployerService;
-import com.mustafakaplan.hrms.business.abstracts.JobPositionService;
-import com.mustafakaplan.hrms.business.abstracts.JobPostingService;
+import com.mustafakaplan.hrms.business.abstracts.*;
 import com.mustafakaplan.hrms.core.utilities.results.DataResult;
 import com.mustafakaplan.hrms.core.utilities.results.Result;
 import com.mustafakaplan.hrms.core.utilities.results.SuccessDataResult;
@@ -25,13 +22,15 @@ public class JobPostingManager implements JobPostingService {
     private final JobPositionService jobPositionService;
     private final EmployerService employerService;
     private final CityService cityService;
+    private final JobTypeService jobTypeService;
 
     @Autowired
-    public JobPostingManager(JobPostingDao jobPostingDao, JobPositionService jobPositionService, EmployerService employerService, CityService cityService) {
+    public JobPostingManager(JobPostingDao jobPostingDao, JobPositionService jobPositionService, EmployerService employerService, CityService cityService, JobTypeService jobTypeService) {
         this.jobPostingDao = jobPostingDao;
         this.jobPositionService = jobPositionService;
         this.employerService = employerService;
         this.cityService = cityService;
+        this.jobTypeService = jobTypeService;
     }
 
     @Override
@@ -52,7 +51,10 @@ public class JobPostingManager implements JobPostingService {
         jobPosting.setJobPosition(jobPositionService.getById(submitVM.getJobPositionId()).getData());
         jobPosting.setEmployer(employerService.findByEmail(submitVM.getEmployerEmail()).getData());
         jobPosting.setCity(cityService.findById(submitVM.getCityId()).getData());
-        jobPosting.setActive(true);
+        jobPosting.setJobType(jobTypeService.findById(submitVM.getJobTypeId()).getData());
+        jobPosting.setRemote(submitVM.isRemote());
+        jobPosting.setActive(false);
+        jobPosting.setApproved(false);
 
         jobPostingDao.save(jobPosting);
         return new SuccessResult("Kayıt Başarılı");
