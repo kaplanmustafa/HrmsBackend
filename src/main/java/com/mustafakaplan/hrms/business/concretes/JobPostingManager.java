@@ -52,7 +52,7 @@ public class JobPostingManager implements JobPostingService {
         jobPosting.setEmployer(employerService.findByEmail(submitVM.getEmployerEmail()).getData());
         jobPosting.setCity(cityService.findById(submitVM.getCityId()).getData());
         jobPosting.setJobType(jobTypeService.findById(submitVM.getJobTypeId()).getData());
-        jobPosting.setRemote(submitVM.isRemote());
+        jobPosting.setRemote(submitVM.getIsRemote() == 1 ? true : false);
         jobPosting.setActive(false);
         jobPosting.setApproved(false);
 
