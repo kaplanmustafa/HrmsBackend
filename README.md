@@ -1,1 +1,1 @@
-Frontend --> https://github.com/kaplanmustafa/HrmsFrontend
+Frontend Project --> https://github.com/kaplanmustafa/HrmsFrontend
