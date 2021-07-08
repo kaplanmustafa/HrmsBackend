@@ -3,7 +3,9 @@ package com.mustafakaplan.hrms.business.concretes;
 import com.mustafakaplan.hrms.business.abstracts.EmployerService;
 import com.mustafakaplan.hrms.core.utilities.results.*;
 import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
+import com.mustafakaplan.hrms.dataAccess.abstracts.CompanyDao;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployerDao;
+import com.mustafakaplan.hrms.entities.concretes.Company;
 import com.mustafakaplan.hrms.entities.concretes.Employer;
 import com.mustafakaplan.hrms.entities.dtos.EmployerDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +18,13 @@ public class EmployerManager implements EmployerService {
 
     private final EmployerDao employerDao;
     private final MailService mailService;
+    private final CompanyDao companyDao;
 
     @Autowired
-    public EmployerManager(EmployerDao employerDao, MailService mailService) {
+    public EmployerManager(EmployerDao employerDao, MailService mailService, CompanyDao companyDao) {
         this.employerDao = employerDao;
         this.mailService = mailService;
+        this.companyDao = companyDao;
     }
 
     @Override
@@ -37,23 +41,22 @@ public class EmployerManager implements EmployerService {
         }
 
         String email = employer.getEmail();
-        String website = employer.getWebsite();
 
-        if (!email.substring(email.indexOf("@") + 1).equals(website.substring(website.indexOf(".") + 1))) {
+        Company company = companyDao.getOne(employer.getCompanyId());
+
+        if (!email.substring(email.indexOf("@") + 1).equals(company.getWebsite().substring(company.getWebsite().indexOf(".") + 1))) {
             return new ErrorResult("Email adresi web sitesi ile aynı domaine sahip olmalıdır!");
         }
 
         Employer employerRegister = new Employer();
-        employerRegister.setCompanyName(employer.getCompanyName());
-        employerRegister.setWebsite(employer.getWebsite());
         employerRegister.setEmail(employer.getEmail());
-        employerRegister.setPhone(employer.getPhone());
+        employerRegister.setCompany(company);
         employerRegister.setPassword(employer.getPassword());
         employerRegister.setVerifiedAccount(false);
         employerRegister.setVerifiedEmail(false);
 
         employerDao.save(employerRegister);
-        mailService.sendMailToCompany(employerRegister, "Şirket kaydınız başarılı bir şekilde gerçekleşmiştir");
+        mailService.sendMailToCompany(employerRegister, "Şirket personel kaydınız başarılı bir şekilde gerçekleşmiştir");
 
         return new SuccessResult("Kayıt Başarılı");
     }

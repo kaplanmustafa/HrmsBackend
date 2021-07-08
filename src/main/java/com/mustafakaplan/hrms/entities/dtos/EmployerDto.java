@@ -11,19 +11,11 @@ public class EmployerDto {
 
     @NotNull
     @NotBlank
-    private String companyName;
-
-    @NotNull
-    @NotBlank
-    private String website;
+    private int companyId;
 
     @NotNull
     @Email
     private String email;
-
-    @NotNull
-    @NotBlank
-    private String phone;
 
     @NotNull
     @NotBlank
