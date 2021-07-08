@@ -36,7 +36,7 @@ public class JobPosting {
     private JobPosition jobPosition;
 
     @ManyToOne
-    private Employer employer;
+    private Company company;
 
     @ManyToOne
     private City city;

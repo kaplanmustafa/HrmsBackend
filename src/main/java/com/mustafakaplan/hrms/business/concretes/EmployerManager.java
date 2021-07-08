@@ -56,7 +56,7 @@ public class EmployerManager implements EmployerService {
         employerRegister.setVerifiedEmail(false);
 
         employerDao.save(employerRegister);
-        mailService.sendMailToCompany(employerRegister, "Şirket personel kaydınız başarılı bir şekilde gerçekleşmiştir");
+        mailService.sendMailToEmployer(employerRegister, "Şirket personel kaydınız başarılı bir şekilde gerçekleşmiştir");
 
         return new SuccessResult("Kayıt Başarılı");
     }

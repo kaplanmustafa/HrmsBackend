@@ -9,20 +9,20 @@ import java.util.List;
 
 public interface JobPostingDao extends JpaRepository<JobPosting, Integer> {
 
-    @Query("Select new com.mustafakaplan.hrms.entities.dtos.JobPostingDto(e.companyName, p.jobTitle, j.numberOfEmployees, j.startDate, j.endDate) From JobPosting j Inner Join j.employer e Inner Join j.jobPosition p " +
+    @Query("Select new com.mustafakaplan.hrms.entities.dtos.JobPostingDto(c.companyName, p.jobTitle, j.numberOfEmployees, j.startDate, j.endDate) From JobPosting j Inner Join j.company c Inner Join j.jobPosition p " +
             "where j.isActive=true")
     List<JobPostingDto> findAllByIsActiveTrue();
 
-    @Query("Select new com.mustafakaplan.hrms.entities.dtos.JobPostingDto(e.companyName, p.jobTitle, j.numberOfEmployees, j.startDate, j.endDate) From JobPosting j Inner Join j.employer e Inner Join j.jobPosition p " +
+    @Query("Select new com.mustafakaplan.hrms.entities.dtos.JobPostingDto(c.companyName, p.jobTitle, j.numberOfEmployees, j.startDate, j.endDate) From JobPosting j Inner Join j.company c Inner Join j.jobPosition p " +
             "where j.isActive=true order by j.startDate desc")
     List<JobPostingDto> findAllByIsActiveTrueOrderByStartDateDesc();
 
-    @Query("Select new com.mustafakaplan.hrms.entities.dtos.JobPostingDto(e.companyName, p.jobTitle, j.numberOfEmployees, j.startDate, j.endDate) From JobPosting j Inner Join j.employer e Inner Join j.jobPosition p " +
+    @Query("Select new com.mustafakaplan.hrms.entities.dtos.JobPostingDto(c.companyName, p.jobTitle, j.numberOfEmployees, j.startDate, j.endDate) From JobPosting j Inner Join j.company c Inner Join j.jobPosition p " +
             "where j.isActive=true order by j.startDate asc ")
     List<JobPostingDto> findAllByIsActiveTrueOrderByStartDateAsc();
 
-    @Query("Select new com.mustafakaplan.hrms.entities.dtos.JobPostingDto(e.companyName, p.jobTitle, j.numberOfEmployees, j.startDate, j.endDate) From JobPosting j Inner Join j.employer e Inner Join j.jobPosition p " +
-            "where e.website=:website and j.isActive=true")
+    @Query("Select new com.mustafakaplan.hrms.entities.dtos.JobPostingDto(c.companyName, p.jobTitle, j.numberOfEmployees, j.startDate, j.endDate) From JobPosting j Inner Join j.company c Inner Join j.jobPosition p " +
+            "where c.website=:website and j.isActive=true")
     List<JobPostingDto> getActivePostingsWithDetails(String website);
 }
 

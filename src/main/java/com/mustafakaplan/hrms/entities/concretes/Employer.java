@@ -6,13 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobPostings", "company"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "company"})
 public class Employer {
 
     @Id
@@ -26,9 +25,6 @@ public class Employer {
     private boolean isVerifiedEmail;
 
     private boolean isVerifiedAccount;
-
-    @OneToMany(mappedBy = "employer")
-    private List<JobPosting> jobPostings;
 
     @ManyToOne
     private Company company;
