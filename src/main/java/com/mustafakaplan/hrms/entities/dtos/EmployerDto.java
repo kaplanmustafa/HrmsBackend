@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 public class EmployerDto {
 
     @NotNull
-    @NotBlank
     private int companyId;
 
     @NotNull
