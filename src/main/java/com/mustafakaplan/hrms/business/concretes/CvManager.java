@@ -2,11 +2,11 @@ package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.*;
 import com.mustafakaplan.hrms.core.utilities.FileUtil;
-import com.mustafakaplan.hrms.core.utilities.results.DataResult;
-import com.mustafakaplan.hrms.core.utilities.results.Result;
-import com.mustafakaplan.hrms.core.utilities.results.SuccessDataResult;
-import com.mustafakaplan.hrms.core.utilities.results.SuccessResult;
-import com.mustafakaplan.hrms.core.utilities.services.abstracts.ImageService;
+import com.mustafakaplan.hrms.core.results.DataResult;
+import com.mustafakaplan.hrms.core.results.Result;
+import com.mustafakaplan.hrms.core.results.SuccessDataResult;
+import com.mustafakaplan.hrms.core.results.SuccessResult;
+import com.mustafakaplan.hrms.core.services.abstracts.ImageService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.CvDao;
 import com.mustafakaplan.hrms.entities.concretes.*;
 import com.mustafakaplan.hrms.entities.dtos.CvSubmitDto;

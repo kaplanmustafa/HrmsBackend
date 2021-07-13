@@ -1,4 +1,4 @@
-package com.mustafakaplan.hrms.core.utilities.results;
+package com.mustafakaplan.hrms.core.results;
 
 public class ErrorResult extends Result {
 

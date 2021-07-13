@@ -1,7 +1,7 @@
 package com.mustafakaplan.hrms.api.controllers;
 
 import com.mustafakaplan.hrms.business.abstracts.AuthService;
-import com.mustafakaplan.hrms.core.utilities.results.DataResult;
+import com.mustafakaplan.hrms.core.results.DataResult;
 import com.mustafakaplan.hrms.entities.dtos.AuthResponseDto;
 import com.mustafakaplan.hrms.entities.dtos.CredentialsDto;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,10 +2,10 @@ package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.AuthService;
 import com.mustafakaplan.hrms.business.abstracts.UserService;
-import com.mustafakaplan.hrms.core.utilities.exceptions.AuthException;
-import com.mustafakaplan.hrms.core.utilities.jwt.JwtUtil;
-import com.mustafakaplan.hrms.core.utilities.results.DataResult;
-import com.mustafakaplan.hrms.core.utilities.results.SuccessDataResult;
+import com.mustafakaplan.hrms.core.exceptions.AuthException;
+import com.mustafakaplan.hrms.core.jwt.JwtUtil;
+import com.mustafakaplan.hrms.core.results.DataResult;
+import com.mustafakaplan.hrms.core.results.SuccessDataResult;
 import com.mustafakaplan.hrms.entities.concretes.Users;
 import com.mustafakaplan.hrms.entities.dtos.AuthResponseDto;
 import com.mustafakaplan.hrms.entities.dtos.CredentialsDto;

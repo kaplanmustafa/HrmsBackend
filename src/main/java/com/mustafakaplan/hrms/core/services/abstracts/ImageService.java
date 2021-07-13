@@ -1,4 +1,4 @@
-package com.mustafakaplan.hrms.core.utilities.services.abstracts;
+package com.mustafakaplan.hrms.core.services.abstracts;
 
 import java.util.Map;
 

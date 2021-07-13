@@ -1,4 +1,4 @@
-package com.mustafakaplan.hrms.core.utilities.services.abstracts;
+package com.mustafakaplan.hrms.core.services.abstracts;
 
 import com.mustafakaplan.hrms.entities.concretes.Employee;
 import com.mustafakaplan.hrms.entities.concretes.Employer;

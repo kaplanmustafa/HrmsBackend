@@ -1,9 +1,9 @@
 package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.CityService;
-import com.mustafakaplan.hrms.core.utilities.results.DataResult;
-import com.mustafakaplan.hrms.core.utilities.results.ErrorDataResult;
-import com.mustafakaplan.hrms.core.utilities.results.SuccessDataResult;
+import com.mustafakaplan.hrms.core.results.DataResult;
+import com.mustafakaplan.hrms.core.results.ErrorDataResult;
+import com.mustafakaplan.hrms.core.results.SuccessDataResult;
 import com.mustafakaplan.hrms.dataAccess.abstracts.CityDao;
 import com.mustafakaplan.hrms.entities.concretes.City;
 import org.springframework.beans.factory.annotation.Autowired;

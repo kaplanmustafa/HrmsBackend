@@ -1,10 +1,10 @@
 package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.*;
-import com.mustafakaplan.hrms.core.utilities.results.DataResult;
-import com.mustafakaplan.hrms.core.utilities.results.Result;
-import com.mustafakaplan.hrms.core.utilities.results.SuccessDataResult;
-import com.mustafakaplan.hrms.core.utilities.results.SuccessResult;
+import com.mustafakaplan.hrms.core.results.DataResult;
+import com.mustafakaplan.hrms.core.results.Result;
+import com.mustafakaplan.hrms.core.results.SuccessDataResult;
+import com.mustafakaplan.hrms.core.results.SuccessResult;
 import com.mustafakaplan.hrms.dataAccess.abstracts.JobPostingDao;
 import com.mustafakaplan.hrms.entities.concretes.JobPosting;
 import com.mustafakaplan.hrms.entities.dtos.JobPostingDto;

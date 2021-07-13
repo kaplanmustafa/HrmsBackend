@@ -1,8 +1,8 @@
-package com.mustafakaplan.hrms.core.utilities.services.concretes;
+package com.mustafakaplan.hrms.core.services.concretes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.mustafakaplan.hrms.core.utilities.services.abstracts.ImageService;
+import com.mustafakaplan.hrms.core.services.abstracts.ImageService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.UserService;
-import com.mustafakaplan.hrms.core.utilities.results.*;
+import com.mustafakaplan.hrms.core.results.*;
 import com.mustafakaplan.hrms.dataAccess.abstracts.UserDao;
 import com.mustafakaplan.hrms.entities.concretes.Users;
 import org.springframework.beans.factory.annotation.Autowired;

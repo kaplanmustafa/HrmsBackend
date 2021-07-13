@@ -2,8 +2,8 @@ package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.EmployeeService;
 import com.mustafakaplan.hrms.business.abstracts.UserService;
-import com.mustafakaplan.hrms.core.utilities.results.*;
-import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
+import com.mustafakaplan.hrms.core.results.*;
+import com.mustafakaplan.hrms.core.services.abstracts.MailService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployeeDao;
 import com.mustafakaplan.hrms.entities.concretes.Employee;
 import com.mustafakaplan.hrms.entities.concretes.Users;
@@ -45,7 +45,7 @@ public class EmployeeManager implements EmployeeService {
         }
 
         if (identityInDb != null) {
-            errorMessage += " Bu TC No Başka Bir Kullanıcıya Ait!";
+            errorMessage += "Bu TC No Başka Bir Kullanıcıya Ait!";
         }
 
         if (!errorMessage.isEmpty()) {

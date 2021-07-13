@@ -1,10 +1,9 @@
 package com.mustafakaplan.hrms.api.controllers;
 
 import com.mustafakaplan.hrms.business.abstracts.JobPositionService;
-import com.mustafakaplan.hrms.core.utilities.results.DataResult;
-import com.mustafakaplan.hrms.core.utilities.results.Result;
+import com.mustafakaplan.hrms.core.results.DataResult;
+import com.mustafakaplan.hrms.core.results.Result;
 import com.mustafakaplan.hrms.entities.concretes.JobPosition;
-import com.mustafakaplan.hrms.entities.concretes.JobPosting;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.JobTypeService;
-import com.mustafakaplan.hrms.core.utilities.results.*;
+import com.mustafakaplan.hrms.core.results.*;
 import com.mustafakaplan.hrms.dataAccess.abstracts.JobTypeDao;
 import com.mustafakaplan.hrms.entities.concretes.JobType;
 import org.springframework.beans.factory.annotation.Autowired;

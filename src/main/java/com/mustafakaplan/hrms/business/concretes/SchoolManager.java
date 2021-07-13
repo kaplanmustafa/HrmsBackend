@@ -1,8 +1,8 @@
 package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.SchoolService;
-import com.mustafakaplan.hrms.core.utilities.results.Result;
-import com.mustafakaplan.hrms.core.utilities.results.SuccessResult;
+import com.mustafakaplan.hrms.core.results.Result;
+import com.mustafakaplan.hrms.core.results.SuccessResult;
 import com.mustafakaplan.hrms.dataAccess.abstracts.SchoolDao;
 import com.mustafakaplan.hrms.entities.concretes.School;
 import org.springframework.beans.factory.annotation.Autowired;

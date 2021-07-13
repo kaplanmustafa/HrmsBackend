@@ -1,4 +1,4 @@
-package com.mustafakaplan.hrms.core.utilities.jwt;
+package com.mustafakaplan.hrms.core.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -2,8 +2,8 @@ package com.mustafakaplan.hrms.business.concretes;
 
 import com.mustafakaplan.hrms.business.abstracts.EmployerService;
 import com.mustafakaplan.hrms.business.abstracts.UserService;
-import com.mustafakaplan.hrms.core.utilities.results.*;
-import com.mustafakaplan.hrms.core.utilities.services.abstracts.MailService;
+import com.mustafakaplan.hrms.core.results.*;
+import com.mustafakaplan.hrms.core.services.abstracts.MailService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.CompanyDao;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployerDao;
 import com.mustafakaplan.hrms.entities.concretes.Company;
