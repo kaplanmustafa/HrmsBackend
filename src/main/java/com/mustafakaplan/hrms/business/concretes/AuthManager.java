@@ -11,6 +11,7 @@ import com.mustafakaplan.hrms.entities.dtos.AuthResponseDto;
 import com.mustafakaplan.hrms.entities.dtos.CredentialsDto;
 import com.mustafakaplan.hrms.entities.dtos.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,15 +19,17 @@ public class AuthManager implements AuthService {
 
     private final UserService userService;
     private final JwtUtil jwtUtil;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AuthManager(UserService userService, JwtUtil jwtUtil) {
+    public AuthManager(UserService userService, JwtUtil jwtUtil, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.jwtUtil = jwtUtil;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public DataResult<AuthResponseDto>  authenticate(CredentialsDto credentials) {
+    public DataResult<AuthResponseDto> authenticate(CredentialsDto credentials) {
         Users inDB = userService.findByEmail(credentials.getEmail()).getData();
 
         if (inDB == null) {
@@ -34,6 +37,12 @@ public class AuthManager implements AuthService {
         }
 
         if (!credentials.getUserType().equals(inDB.getUserType())) {
+            throw new AuthException();
+        }
+
+        boolean matches = passwordEncoder.matches(credentials.getPassword(), inDB.getPassword());
+
+        if (!matches) {
             throw new AuthException();
         }
 

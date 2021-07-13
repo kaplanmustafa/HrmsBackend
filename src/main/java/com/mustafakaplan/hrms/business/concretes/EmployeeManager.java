@@ -10,6 +10,7 @@ import com.mustafakaplan.hrms.entities.concretes.Users;
 import com.mustafakaplan.hrms.entities.dtos.EmployeeDto;
 import com.mustafakaplan.hrms.mernisReference.PIPKPSPublicSoap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,13 +21,15 @@ public class EmployeeManager implements EmployeeService {
     private final EmployeeDao employeeDao;
     private final MailService mailService;
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
     private static final String USER_TYPE = "employee";
 
     @Autowired
-    public EmployeeManager(EmployeeDao employeeDao, MailService mailService, UserService userService) {
+    public EmployeeManager(EmployeeDao employeeDao, MailService mailService, UserService userService, PasswordEncoder passwordEncoder) {
         this.employeeDao = employeeDao;
         this.mailService = mailService;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -68,7 +71,7 @@ public class EmployeeManager implements EmployeeService {
         user.setName(employee.getName());
         user.setSurname(employee.getSurname());
         user.setEmail(employee.getEmail());
-        user.setPassword(employee.getPassword());
+        user.setPassword(passwordEncoder.encode(employee.getPassword()));
         user.setVerifiedEmail(false);
         user.setUserType(USER_TYPE);
         userService.add(user);
