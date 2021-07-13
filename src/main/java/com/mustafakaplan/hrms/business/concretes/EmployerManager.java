@@ -4,6 +4,7 @@ import com.mustafakaplan.hrms.business.abstracts.EmployerService;
 import com.mustafakaplan.hrms.business.abstracts.UserService;
 import com.mustafakaplan.hrms.core.results.*;
 import com.mustafakaplan.hrms.core.services.abstracts.MailService;
+import com.mustafakaplan.hrms.core.services.abstracts.PasswordService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.CompanyDao;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployerDao;
 import com.mustafakaplan.hrms.entities.concretes.Company;
@@ -22,14 +23,16 @@ public class EmployerManager implements EmployerService {
     private final MailService mailService;
     private final CompanyDao companyDao;
     private final UserService userService;
+    private final PasswordService passwordService;
     private static final String USER_TYPE = "employer";
 
     @Autowired
-    public EmployerManager(EmployerDao employerDao, MailService mailService, CompanyDao companyDao, UserService userService) {
+    public EmployerManager(EmployerDao employerDao, MailService mailService, CompanyDao companyDao, UserService userService, PasswordService passwordService) {
         this.employerDao = employerDao;
         this.mailService = mailService;
         this.companyDao = companyDao;
         this.userService = userService;
+        this.passwordService = passwordService;
     }
 
     @Override
@@ -57,7 +60,7 @@ public class EmployerManager implements EmployerService {
         user.setName(employer.getName());
         user.setSurname(employer.getSurname());
         user.setEmail(employer.getEmail());
-        user.setPassword(employer.getPassword());
+        user.setPassword(passwordService.encodePassword(employer.getPassword()));
         user.setVerifiedEmail(false);
         user.setUserType(USER_TYPE);
         userService.add(user);

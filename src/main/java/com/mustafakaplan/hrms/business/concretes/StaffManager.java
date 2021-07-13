@@ -4,6 +4,7 @@ import com.mustafakaplan.hrms.business.abstracts.StaffService;
 import com.mustafakaplan.hrms.business.abstracts.UserService;
 import com.mustafakaplan.hrms.core.results.*;
 import com.mustafakaplan.hrms.core.services.abstracts.MailService;
+import com.mustafakaplan.hrms.core.services.abstracts.PasswordService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.StaffDao;
 import com.mustafakaplan.hrms.entities.concretes.Staff;
 import com.mustafakaplan.hrms.entities.concretes.Users;
@@ -20,13 +21,15 @@ public class StaffManager implements StaffService {
     private final StaffDao staffDao;
     private final MailService mailService;
     private final UserService userService;
+    private final PasswordService passwordService;
     private static final String USER_TYPE = "staff";
 
     @Autowired
-    public StaffManager(StaffDao staffDao, MailService mailService, UserService userService) {
+    public StaffManager(StaffDao staffDao, MailService mailService, UserService userService, PasswordService passwordService) {
         this.staffDao = staffDao;
         this.mailService = mailService;
         this.userService = userService;
+        this.passwordService = passwordService;
     }
 
     @Override
@@ -68,7 +71,7 @@ public class StaffManager implements StaffService {
         user.setName(staff.getName());
         user.setSurname(staff.getSurname());
         user.setEmail(staff.getEmail());
-        user.setPassword(staff.getPassword());
+        user.setPassword(passwordService.encodePassword(staff.getPassword()));
         user.setVerifiedEmail(false);
         user.setUserType(USER_TYPE);
         userService.add(user);

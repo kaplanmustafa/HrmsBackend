@@ -4,13 +4,13 @@ import com.mustafakaplan.hrms.business.abstracts.EmployeeService;
 import com.mustafakaplan.hrms.business.abstracts.UserService;
 import com.mustafakaplan.hrms.core.results.*;
 import com.mustafakaplan.hrms.core.services.abstracts.MailService;
+import com.mustafakaplan.hrms.core.services.abstracts.PasswordService;
 import com.mustafakaplan.hrms.dataAccess.abstracts.EmployeeDao;
 import com.mustafakaplan.hrms.entities.concretes.Employee;
 import com.mustafakaplan.hrms.entities.concretes.Users;
 import com.mustafakaplan.hrms.entities.dtos.EmployeeDto;
 import com.mustafakaplan.hrms.mernisReference.PIPKPSPublicSoap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,15 +21,15 @@ public class EmployeeManager implements EmployeeService {
     private final EmployeeDao employeeDao;
     private final MailService mailService;
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordService passwordService;
     private static final String USER_TYPE = "employee";
 
     @Autowired
-    public EmployeeManager(EmployeeDao employeeDao, MailService mailService, UserService userService, PasswordEncoder passwordEncoder) {
+    public EmployeeManager(EmployeeDao employeeDao, MailService mailService, UserService userService, PasswordService passwordService) {
         this.employeeDao = employeeDao;
         this.mailService = mailService;
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
+        this.passwordService = passwordService;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class EmployeeManager implements EmployeeService {
         user.setName(employee.getName());
         user.setSurname(employee.getSurname());
         user.setEmail(employee.getEmail());
-        user.setPassword(passwordEncoder.encode(employee.getPassword()));
+        user.setPassword(passwordService.encodePassword(employee.getPassword()));
         user.setVerifiedEmail(false);
         user.setUserType(USER_TYPE);
         userService.add(user);
