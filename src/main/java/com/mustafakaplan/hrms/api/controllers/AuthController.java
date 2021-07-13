@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -22,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping
-    DataResult<AuthResponseDto> handleAuthentication(@RequestBody CredentialsDto credentials) {
+    DataResult<AuthResponseDto> handleAuthentication(@Valid @RequestBody CredentialsDto credentials) {
         return authService.authenticate(credentials);
     }
 }
