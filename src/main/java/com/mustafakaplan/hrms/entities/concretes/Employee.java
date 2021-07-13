@@ -14,19 +14,14 @@ public class Employee {
     @GeneratedValue
     private int id;
 
-    private String name;
-
-    private String surname;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties
+    private Users user;
 
     private String identityNumber;
 
     private int birthYear;
-
-    private String email;
-
-    private String password;
-
-    private boolean isVerifiedEmail;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.REMOVE)
     private Cv cv;

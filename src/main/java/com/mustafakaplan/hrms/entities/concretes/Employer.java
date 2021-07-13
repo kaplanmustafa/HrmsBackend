@@ -18,11 +18,10 @@ public class Employer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String email;
-
-    private String password;
-
-    private boolean isVerifiedEmail;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties
+    private Users user;
 
     private boolean isVerifiedAccount;
 

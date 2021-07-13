@@ -12,6 +12,4 @@ public interface EmployerService {
     Result add(EmployerDto employer);
 
     DataResult<List<Employer>> getAll();
-
-    DataResult<Employer> findByEmail(String email);
 }

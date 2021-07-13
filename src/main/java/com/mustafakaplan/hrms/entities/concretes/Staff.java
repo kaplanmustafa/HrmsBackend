@@ -1,10 +1,9 @@
 package com.mustafakaplan.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -14,17 +13,12 @@ public class Staff {
     @GeneratedValue
     private int id;
 
-    private String name;
-
-    private String surname;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties
+    private Users user;
 
     private String identityNumber;
 
     private int birthYear;
-
-    private String email;
-
-    private String password;
-
-    private boolean isVerifiedEmail;
 }

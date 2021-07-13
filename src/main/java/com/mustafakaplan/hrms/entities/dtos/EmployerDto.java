@@ -10,6 +10,14 @@ import javax.validation.constraints.NotNull;
 public class EmployerDto {
 
     @NotNull
+    @NotBlank
+    private String name;
+
+    @NotNull
+    @NotBlank
+    private String surname;
+
+    @NotNull
     private int companyId;
 
     @NotNull

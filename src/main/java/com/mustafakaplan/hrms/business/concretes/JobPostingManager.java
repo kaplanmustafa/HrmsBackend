@@ -49,7 +49,7 @@ public class JobPostingManager implements JobPostingService {
         jobPosting.setEndDate(submitVM.getEndDate());
         jobPosting.setNumberOfEmployees(submitVM.getNumberOfEmployees());
         jobPosting.setJobPosition(jobPositionService.getById(submitVM.getJobPositionId()).getData());
-        jobPosting.setCompany(employerService.findByEmail(submitVM.getEmployerEmail()).getData().getCompany());
+        //jobPosting.setCompany(employerService.findByEmail(submitVM.getEmployerEmail()).getData().getCompany());
         jobPosting.setCity(cityService.findById(submitVM.getCityId()).getData());
         jobPosting.setJobType(jobTypeService.findById(submitVM.getJobTypeId()).getData());
         jobPosting.setRemote(submitVM.getIsRemote() == 1 ? true : false);

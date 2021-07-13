@@ -5,7 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StaffDao extends JpaRepository<Staff, Integer> {
 
-    Staff findByEmail(String email);
-
     Staff findByIdentityNumber(String identityNumber);
 }
