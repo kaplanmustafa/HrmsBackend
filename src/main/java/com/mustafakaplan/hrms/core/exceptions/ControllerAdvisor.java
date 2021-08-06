@@ -1,6 +1,7 @@
 package com.mustafakaplan.hrms.core.exceptions;
 
 import com.mustafakaplan.hrms.core.results.ErrorDataResult;
+import com.mustafakaplan.hrms.core.results.ErrorResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,5 +25,10 @@ public class ControllerAdvisor {
         }
 
         return new ErrorDataResult<>(validationErrors, "Doğrulama Başarısız!");
+    }
+
+    @ExceptionHandler(value = AuthException.class)
+    public ErrorResult handleUnauthorizedException() {
+        return new ErrorResult("Giriş Başarısız!");
     }
 }
